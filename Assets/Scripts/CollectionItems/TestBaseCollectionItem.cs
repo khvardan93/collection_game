@@ -1,7 +1,7 @@
 ﻿using Core.Services;
 using UnityEngine;
 
-namespace Collection
+namespace Game
 {
     [CreateAssetMenu(fileName = "CollectionTestItem", menuName = "Configs/CollectionTestItem")]
     public class TestCollectionItem : BaseCollectionItem

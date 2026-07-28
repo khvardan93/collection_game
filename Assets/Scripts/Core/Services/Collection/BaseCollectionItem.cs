@@ -7,7 +7,7 @@ namespace Core.Services
         [SerializeField] protected CollectionItemType _type;
         [SerializeField] protected string _name;
         
-        CollectionItemType ICollectionItem.Type => _type;
-        string ICollectionItem.Name => _name;
+        public CollectionItemType Type => _type;
+        public string Name => _name;
     }
 }

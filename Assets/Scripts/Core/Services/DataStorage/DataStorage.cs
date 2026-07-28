@@ -32,6 +32,16 @@ namespace Core.Services
             Flush();
         }
 
+        void IDataStorage.Fill<T>(string key, T reference)
+        {
+            if (!_entries.TryGetValue(key, out string json))
+            {
+                return;
+            }
+            
+            JsonUtility.FromJsonOverwrite(json, reference);
+        }
+
         T IDataStorage.Load<T>(string key)
         {
             if (!_entries.TryGetValue(key, out string json))
