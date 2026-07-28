@@ -12,6 +12,7 @@ namespace Core.Bootstrap
             var container = new ServiceContainer();
 
             container.Register<IGameClock, GameClock>();
+            container.Register<IDataStorage, DataStorage>();
 
             ServiceLocator.Container = container;
         }
