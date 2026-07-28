@@ -20,7 +20,7 @@ namespace Core.Services
             _entries = LoadEntries(_filePath);
         }
 
-        public void Save<T>(T data) where T : IStorable
+        void IDataStorage.Save<T>(T data)
         {
             if (!Attribute.IsDefined(typeof(T), typeof(SerializableAttribute)))
             {
@@ -32,7 +32,7 @@ namespace Core.Services
             Flush();
         }
 
-        public T Load<T>(string key) where T : IStorable, new()
+        T IDataStorage.Load<T>(string key)
         {
             if (!_entries.TryGetValue(key, out string json))
             {
@@ -42,12 +42,12 @@ namespace Core.Services
             return JsonUtility.FromJson<T>(json);
         }
 
-        public bool Exists(string key)
+        bool IDataStorage.Exists(string key)
         {
             return _entries.ContainsKey(key);
         }
 
-        public void Delete(string key)
+        void IDataStorage.Delete(string key)
         {
             if (_entries.Remove(key))
             {
