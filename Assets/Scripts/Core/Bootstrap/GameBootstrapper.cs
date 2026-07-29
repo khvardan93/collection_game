@@ -10,6 +10,7 @@ namespace Core.Bootstrap
     {
         [SerializeField] private Collection _collection;
         [SerializeField] private UIController _uiController;
+        [SerializeField] private GameConfigs _gameConfigs;
         
         private void Awake()
         {
@@ -18,6 +19,7 @@ namespace Core.Bootstrap
             container.Register<IGameClock, GameClock>();
             container.Register<IDataStorage, DataStorage>();
             container.Register<ICollection>(_collection);
+            container.Register<IGameConfigs>(_gameConfigs);
             container.Register<IInventory, Inventory>();
             container.Register<IUIController>(_uiController);
 
