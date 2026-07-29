@@ -304,7 +304,7 @@ GameObject:
   - component: {fileID: 8729188417578484689}
   - component: {fileID: 3390407276274064399}
   m_Layer: 5
-  m_Name: SettingsButton
+  m_Name: RestartButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -411,7 +411,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 8729188417578484689}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 6639745685037193395}
+        m_TargetAssemblyTypeName: UI.UIPausePage, Game
+        m_MethodName: OnRestart
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &6672622464158375065
 GameObject:
   m_ObjectHideFlags: 0
@@ -532,7 +544,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 5670417933898152261}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 6639745685037193395}
+        m_TargetAssemblyTypeName: UI.UIPausePage, Game
+        m_MethodName: OnResume
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &6969406768055273732
 GameObject:
   m_ObjectHideFlags: 0
@@ -819,13 +843,14 @@ GameObject:
   - component: {fileID: 6439392033542318925}
   - component: {fileID: 6349690601866113189}
   - component: {fileID: 7400637779524880385}
+  - component: {fileID: 6639745685037193395}
   m_Layer: 5
   m_Name: Pause
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &8685504542087736327
 RectTransform:
   m_ObjectHideFlags: 0
@@ -910,6 +935,18 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &6639745685037193395
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8568705060696480208}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29eaf46fb8a94ac9aa610bf71b6037e2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Game::UI.UIPausePage
 --- !u!1 &8673817343698396051
 GameObject:
   m_ObjectHideFlags: 0

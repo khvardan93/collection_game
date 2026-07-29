@@ -195,7 +195,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 3620765994398483670}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 3506752923270649585}
+        m_TargetAssemblyTypeName: UI.UIHudPage, Game
+        m_MethodName: OnPause
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &708110829498730287
 GameObject:
   m_ObjectHideFlags: 0
@@ -1163,6 +1175,7 @@ GameObject:
   - component: {fileID: 8892297892751291765}
   - component: {fileID: 1587340598097885073}
   - component: {fileID: 7116351396643542100}
+  - component: {fileID: 3506752923270649585}
   m_Layer: 5
   m_Name: HUD
   m_TagString: Untagged
@@ -1257,6 +1270,18 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &3506752923270649585
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5700200471121499196}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ad4a7ff11334f56a77b355d1760b8b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Game::UI.UIHudePage
 --- !u!1 &8031878307800242593
 GameObject:
   m_ObjectHideFlags: 0
