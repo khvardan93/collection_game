@@ -9,10 +9,10 @@ namespace GamePlay
     public class CollectableSpawner : MonoBehaviour
     {
         [SerializeField] private Transform[] _borders;
-
-        [SerializeField] private int _spawnCount = 10;
-        [SerializeField] private float _heightAboveSurface = 0.5f;
-
+        
+        [SerializeField] private int _spawnCount = 10;//TODO remove
+        [SerializeField] private float _heightAboveSurface = 1f;
+        [Header("Raycast Settings")]
         [SerializeField] private LayerMask _layerMask;
         [SerializeField] private float _raycastStartHeight = 50f;
         [SerializeField] private float _raycastMaxDistance = 200f;

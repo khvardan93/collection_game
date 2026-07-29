@@ -1,6 +1,7 @@
 using UnityEngine;
 
 namespace GamePlay
+
 {
     public class CollectableController : MonoBehaviour
     {

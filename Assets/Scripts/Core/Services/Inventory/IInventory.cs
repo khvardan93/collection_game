@@ -1,9 +1,12 @@
 ﻿using System.Collections.Generic;
+using System;
 
 namespace Core.Services
 {
     public interface IInventory
     {
+        event Action OnRefresh;
+        
         IReadOnlyList<IInventoryItem> Items { get; }
 
         void Place(CollectionItemType type, string name, int quantity);

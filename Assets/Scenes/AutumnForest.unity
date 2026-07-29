@@ -188,33 +188,11 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 200, y: 100, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!1 &326222808 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2536197354308843136, guid: 3e9e9c1271a51eb459d78f8f68443af8, type: 3}
-  m_PrefabInstance: {fileID: 806820828}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &326222815 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5939749087013010121, guid: 3e9e9c1271a51eb459d78f8f68443af8, type: 3}
   m_PrefabInstance: {fileID: 806820828}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &326222816
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 326222808}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 848a88fb132a53b4baf17a344310c16f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::BasicRigidBodyPush
-  pushLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  canPush: 0
-  strength: 1.1
 --- !u!1 &518899180
 GameObject:
   m_ObjectHideFlags: 0
@@ -269,23 +247,13 @@ MonoBehaviour:
   - {fileID: 1725427573}
   - {fileID: 301518180}
   _spawnCount: 10
-  _heightAboveSurface: 0.5
+  _heightAboveSurface: 1.5
   _layerMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 24
   _raycastStartHeight: 50
   _raycastMaxDistance: 200
   _maxAttemptsPerSpawn: 30
---- !u!82 &615371763 stripped
-AudioSource:
-  m_CorrespondingSourceObject: {fileID: 6009309750340938360, guid: 3e9e9c1271a51eb459d78f8f68443af8, type: 3}
-  m_PrefabInstance: {fileID: 806820828}
-  m_PrefabAsset: {fileID: 0}
---- !u!82 &745337948 stripped
-AudioSource:
-  m_CorrespondingSourceObject: {fileID: 6834240183292816253, guid: 3e9e9c1271a51eb459d78f8f68443af8, type: 3}
-  m_PrefabInstance: {fileID: 806820828}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &806820828
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -301,30 +269,6 @@ PrefabInstance:
     - target: {fileID: 2536197354308843136, guid: 3e9e9c1271a51eb459d78f8f68443af8, type: 3}
       propertyPath: m_Name
       value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 2747070387736619215, guid: 3e9e9c1271a51eb459d78f8f68443af8, type: 3}
-      propertyPath: _audioFoley
-      value: 
-      objectReference: {fileID: 745337948}
-    - target: {fileID: 2747070387736619215, guid: 3e9e9c1271a51eb459d78f8f68443af8, type: 3}
-      propertyPath: _jumpTimeout
-      value: 0.3
-      objectReference: {fileID: 0}
-    - target: {fileID: 2747070387736619215, guid: 3e9e9c1271a51eb459d78f8f68443af8, type: 3}
-      propertyPath: _landingAudio
-      value: 
-      objectReference: {fileID: 615371763}
-    - target: {fileID: 2747070387736619215, guid: 3e9e9c1271a51eb459d78f8f68443af8, type: 3}
-      propertyPath: _audioFootsteps
-      value: 
-      objectReference: {fileID: 962571201}
-    - target: {fileID: 2747070387736619215, guid: 3e9e9c1271a51eb459d78f8f68443af8, type: 3}
-      propertyPath: _landingAudioClip
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 2747070387736619215, guid: 3e9e9c1271a51eb459d78f8f68443af8, type: 3}
-      propertyPath: _groundLayers.m_Bits
-      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 5939749087013010121, guid: 3e9e9c1271a51eb459d78f8f68443af8, type: 3}
       propertyPath: m_LocalPosition.x
@@ -366,14 +310,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 9045751103020225899, guid: 3e9e9c1271a51eb459d78f8f68443af8, type: 3}
+    m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 2536197354308843136, guid: 3e9e9c1271a51eb459d78f8f68443af8, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 326222816}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3e9e9c1271a51eb459d78f8f68443af8, type: 3}
 --- !u!1 &878254384
 GameObject:
@@ -428,11 +368,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 100, z: 200}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!82 &962571201 stripped
-AudioSource:
-  m_CorrespondingSourceObject: {fileID: 6989412868672926176, guid: 3e9e9c1271a51eb459d78f8f68443af8, type: 3}
-  m_PrefabInstance: {fileID: 806820828}
-  m_PrefabAsset: {fileID: 0}
 --- !u!224 &1094004520 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 652024047536563247, guid: d8a4e6d9d811ca743847aceb42cede66, type: 3}
@@ -1208,10 +1143,6 @@ PrefabInstance:
     - target: {fileID: 5700200471121499196, guid: 66e5cf63ac96a1c40bfd0b7e0c672818, type: 3}
       propertyPath: m_Name
       value: HUD
-      objectReference: {fileID: 0}
-    - target: {fileID: 5700200471121499196, guid: 66e5cf63ac96a1c40bfd0b7e0c672818, type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7611706842432634988, guid: 66e5cf63ac96a1c40bfd0b7e0c672818, type: 3}
       propertyPath: m_Pivot.x
