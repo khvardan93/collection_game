@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 955d238142494708aa6e4d7851a2a08e, type: 3}
+  m_Name: CollectionGemItem
+  m_EditorClassIdentifier: Assembly-CSharp::Collection.TestCollectionItem
+  _type: 1
+  _name: Gem
+  _sprite: {fileID: 0}
+  _prefab: {fileID: 1684742549421133650, guid: 1f39d943e5767fe45b5a7915c1efa83f, type: 3}

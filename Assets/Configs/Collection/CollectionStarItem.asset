@@ -10,7 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 955d238142494708aa6e4d7851a2a08e, type: 3}
-  m_Name: CollectionTestItem
+  m_Name: CollectionStarItem
   m_EditorClassIdentifier: Assembly-CSharp::Collection.TestCollectionItem
-  _type: 0
-  _name: test
+  _type: 2
+  _name: Star
+  _sprite: {fileID: 0}
+  _prefab: {fileID: 745314303076577220, guid: bc7ce8c3b959efd459b472ee12d9b8e3, type: 3}

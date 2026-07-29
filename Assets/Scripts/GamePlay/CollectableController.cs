@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace GamePlay
 {
-    public class SimpleGemsAnim : MonoBehaviour
+    public class CollectableController : MonoBehaviour
     {
         [SerializeField] private bool _isRotating;
         [SerializeField] private bool _rotateX;

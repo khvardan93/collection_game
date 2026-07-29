@@ -920,9 +920,9 @@ GameObject:
   - component: {fileID: 2508021886540120945}
   - component: {fileID: 521882113776398616}
   - component: {fileID: 2747070387736619215}
-  - component: {fileID: 9045751103020225899}
   - component: {fileID: 8949791979902340218}
   - component: {fileID: 378117997864087697}
+  - component: {fileID: 5465700539482021363}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -938,7 +938,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2536197354308843136}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1008,48 +1008,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26e54e5a728a9234ab24fcf1460ed8a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MoveSpeed: 2
-  SprintSpeed: 5.335
-  RotationSmoothTime: 0.12
-  SpeedChangeRate: 10
-  AudioFootsteps: {fileID: 6989412868672926176}
-  LandingAudio: {fileID: 6009309750340938360}
-  AudioFoley: {fileID: 6834240183292816253}
-  LandingAudioClip: {fileID: 0}
-  FootstepAudioClips: []
-  FootstepAudioVolume: 0.3
-  JumpHeight: 1.2
-  Gravity: -15
-  JumpTimeout: 0.3
-  FallTimeout: 0.15
-  Grounded: 1
-  GroundedOffset: -0.14
-  GroundedRadius: 0.28
-  GroundLayers:
+  _moveSpeed: 2
+  _sprintSpeed: 5.335
+  _rotationSmoothTime: 0.12
+  _speedChangeRate: 10
+  _audioFootsteps: {fileID: 6989412868672926176}
+  _landingAudio: {fileID: 6009309750340938360}
+  _audioFoley: {fileID: 6834240183292816253}
+  _landingAudioClip: {fileID: 0}
+  _footstepAudioClips: []
+  _footstepAudioVolume: 0.5
+  _jumpHeight: 1.2
+  _gravity: -15
+  _jumpTimeout: 0.3
+  _fallTimeout: 0.15
+  _grounded: 1
+  _groundedOffset: -0.14
+  _groundedRadius: 0.28
+  _groundLayers:
     serializedVersion: 2
-    m_Bits: 1
-  CinemachineCameraTarget: {fileID: 996889661113745345}
-  TopClamp: 70
-  BottomClamp: -30
-  CameraAngleOverride: 0
-  LockCameraPosition: 0
---- !u!114 &9045751103020225899
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2536197354308843136}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 909d917d73a63f940ac158d02e936645, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  pushLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  canPush: 0
-  strength: 1.1
+    m_Bits: 8
+  _cinemachineCameraTarget: {fileID: 0}
+  _topClamp: 70
+  _bottomClamp: -30
+  _cameraAngleOverride: 0
+  _lockCameraPosition: 0
 --- !u!114 &8949791979902340218
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1167,6 +1150,23 @@ MonoBehaviour:
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!114 &5465700539482021363
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2536197354308843136}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 848a88fb132a53b4baf17a344310c16f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BasicRigidBodyPush
+  pushLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  canPush: 0
+  strength: 1.1
 --- !u!1 &2605487437688477828
 GameObject:
   m_ObjectHideFlags: 0
