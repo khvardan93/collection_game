@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Core.DI;
+using UnityEngine;
 
 namespace Core.Services
 {
@@ -10,7 +11,7 @@ namespace Core.Services
     {
         private const string _key = "Inventory";
 
-        private readonly List<InventoryItem> _items = new List<InventoryItem>();
+        [SerializeField] private List<InventoryItem> _items = new ();
         private readonly IDataStorage _dataStorage;
 
         string IStorable.Key => _key;
