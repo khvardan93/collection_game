@@ -7,6 +7,11 @@ on:
     branches: [ master ]
   workflow_dispatch:
 
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
 jobs:
   build:
     name: Build for ${{ matrix.targetPlatform }}
@@ -47,3 +52,31 @@ jobs:
         with:
           name: Build-${{ matrix.targetPlatform }}
           path: build/${{ matrix.targetPlatform }}
+
+      - name: Upload Pages artifact
+        if: matrix.targetPlatform == 'WebGL' && github.event_name == 'push'
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: build/WebGL/WebGL
+
+      - name: Upload APK to release
+        if: matrix.targetPlatform == 'Android' && github.event_name == 'push'
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: latest
+          name: Latest build
+          make_latest: true
+          files: build/Android/Android/*.apk
+
+  deploy-pages:
+    name: Deploy WebGL to GitHub Pages
+    needs: build
+    if: github.event_name == 'push'
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
