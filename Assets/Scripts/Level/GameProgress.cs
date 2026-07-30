@@ -1,0 +1,66 @@
+﻿using System;
+using Core.DI;
+using Core.Services;
+
+namespace Game
+{
+    public class GameProgress : IGameProgress, IDestroyable
+    {
+        public event Action OnLevelComplete;
+        public event Action OnItemCollected;
+        
+        private readonly IDataStorage _dataStorage;
+        private readonly IGameConfigs _gameConfigs;
+        private readonly IInventory _inventory;
+        
+        private GameProgressData _gameProgressData;
+        private LevelProgress _levelProgress;
+        
+        int IGameProgress.CurrentLevelIndex => _gameProgressData.CurrentLevelIndex;
+        ILevelProgress IGameProgress.CurrentLevelProgress => _levelProgress;
+
+        public GameProgress()
+        {
+            _dataStorage = ServiceLocator.Container.Resolve<IDataStorage>();
+            _gameConfigs = ServiceLocator.Container.Resolve<IGameConfigs>();
+            _inventory = ServiceLocator.Container.Resolve<IInventory>();
+            _gameProgressData = _dataStorage.Load<GameProgressData>(GameProgressData.DataKey);
+
+            _inventory.OnRefresh += OnInventoryChanged;
+        }
+        
+        void IDestroyable.Destroy()
+        {
+            _inventory.OnRefresh -= OnInventoryChanged;
+        }
+
+        private void OnInventoryChanged(CollectionItemType type, string name, int count)
+        {
+            
+        }
+
+        public void SetNextLevel()
+        {
+            _gameProgressData.CurrentLevelIndex++;
+            _dataStorage.Save(_gameProgressData);
+            SetLevel();
+        }
+
+        public void SetLevel()
+        {
+            if(_gameProgressData.CurrentLevelIndex <_gameConfigs.Levels.Count)
+            {
+                var currentLevel = _gameConfigs.Levels[_gameProgressData.CurrentLevelIndex];
+                _levelProgress = new LevelProgress(currentLevel);
+            }
+        }
+        
+        [Serializable]
+        public struct GameProgressData : IStorable
+        {
+            public const string DataKey = "GameProgress";
+            public int CurrentLevelIndex;
+            public string Key => DataKey;
+        }
+    }
+}

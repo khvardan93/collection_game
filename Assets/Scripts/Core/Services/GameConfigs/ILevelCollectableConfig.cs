@@ -4,6 +4,6 @@
     {
         CollectionItemType Type { get; }
         string Name { get; }
-        int count { get; }
+        int Count { get; }
     }
 }

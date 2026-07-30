@@ -13,6 +13,6 @@ namespace Core.Services
 
         string ILevelCollectableConfig.Name => _name;
 
-        int ILevelCollectableConfig.count => _count;
+        int ILevelCollectableConfig.Count => _count;
     }
 }

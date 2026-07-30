@@ -1,5 +1,4 @@
-﻿using System;
-using Core.DI;
+﻿using Core.DI;
 using Core.Services;
 using UnityEngine;
 
@@ -23,6 +22,11 @@ namespace UI
             _inventory.OnRefresh -= Refresh;
         }
 
+        private void Refresh(CollectionItemType collectionItemType, string s, int arg3)
+        {
+            Refresh();    
+        }
+        
         private void Refresh()
         {
             int index = 0;

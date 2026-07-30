@@ -1,5 +1,6 @@
 using Core.DI;
 using Core.Services;
+using Game;
 using UI;
 using UnityEngine;
 
@@ -21,6 +22,7 @@ namespace Core.Bootstrap
             container.Register<ICollection>(_collection);
             container.Register<IGameConfigs>(_gameConfigs);
             container.Register<IInventory, Inventory>();
+            container.Register<IGameProgress, GameProgress>();
             container.Register<IUIController>(_uiController);
 
             ServiceLocator.Container = container;

@@ -5,7 +5,7 @@ namespace Core.Services
 {
     public interface IInventory
     {
-        event Action OnRefresh;
+        event Action<CollectionItemType, string, int> OnRefresh;
         
         IReadOnlyList<IInventoryItem> Items { get; }
 
