@@ -1538,7 +1538,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &5960502773521269532
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1635,6 +1635,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57619cc21be9412f919d58dd1841cead, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Game::UI.UIWinPage
+  _levelText: {fileID: 3736332037149892646}
 --- !u!1 &5396679028908032966
 GameObject:
   m_ObjectHideFlags: 0

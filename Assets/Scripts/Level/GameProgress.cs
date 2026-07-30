@@ -77,10 +77,15 @@ namespace Game
             OnLevelCompleted?.Invoke();
         }
 
-        public void SetNextLevel()
+        public bool TrySetNextLevel()
         {
             _gameProgressData.CurrentLevelIndex++;
             _dataStorage.Save(_gameProgressData);
+            return TrySetLevel();
+        }
+
+        public void RestartLevel()
+        {
             TrySetLevel();
         }
 
@@ -98,6 +103,7 @@ namespace Game
                 _levelProgress = new LevelProgress(currentLevel);
                 _gameTimer.StartTimer(currentLevel.Duration);
                 _isLevelActive = true;
+                OnItemCollected?.Invoke();
                 return true;
             }
             

@@ -14,3 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: Game::Core.Services.GameConfigs
   _levels:
   - {fileID: 11400000, guid: 04fef9e957751bd42890592b0ca96fbd, type: 2}
+  - {fileID: 11400000, guid: 92def911b00e68b40bdbef6bbf0a5ff1, type: 2}
+  - {fileID: 11400000, guid: b8dcf6aa74a47b44da9c716bfbaff949, type: 2}
+  - {fileID: 11400000, guid: 3a1a73aa577627d4ca02f5a653c4a492, type: 2}
+  - {fileID: 11400000, guid: 674fe18d67642624fbd3301eb410e8c0, type: 2}
+  - {fileID: 11400000, guid: 904476c8c77e33c4ba744b86c5457820, type: 2}
+  - {fileID: 11400000, guid: d23e483a4c4b28547ab981e9a13d5efd, type: 2}
+  - {fileID: 11400000, guid: 9809fbd8cf068004f8e8abfe658222d0, type: 2}
+  - {fileID: 11400000, guid: 16f6058b5ad41e940aa9d1d6b842fff5, type: 2}
+  - {fileID: 11400000, guid: a87bf4dd1e76b30468d8fe3fa55e9b41, type: 2}
+  - {fileID: 11400000, guid: 210d0c90773d4704c90fb9524d5badac, type: 2}

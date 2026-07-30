@@ -18,6 +18,7 @@ namespace Core.Services
         {
             RemainingTime = duration;
             IsRunning = true;
+            _isPaused = false;
             _lastReportedSecond = Mathf.CeilToInt(RemainingTime);
             OnSecondTick?.Invoke(_lastReportedSecond);
         }

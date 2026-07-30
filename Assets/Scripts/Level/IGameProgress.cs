@@ -13,7 +13,8 @@ namespace Game
         bool IsLevelActive { get; }
 
         bool TrySetLevel();
-        void SetNextLevel();
+        bool TrySetNextLevel();
+        void RestartLevel();
         void SetPausedState(bool paused);
     }
 }
