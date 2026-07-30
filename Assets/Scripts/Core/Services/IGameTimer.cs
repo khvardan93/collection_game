@@ -11,6 +11,8 @@ namespace Core.Services
         event Action<int> OnSecondTick;
 
         void StartTimer(float duration);
+        void EndTimer();
+        void PauseTimer(bool pause);
         void AddTime(float additionalTime);
         void Tick(float deltaTime);
     }

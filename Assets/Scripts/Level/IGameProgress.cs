@@ -4,7 +4,8 @@ namespace Game
 {
     public interface IGameProgress
     {
-        event Action OnLevelComplete;
+        event Action OnLevelCompleted;
+        event Action OnLevelFailed;
         event Action OnItemCollected;
         
         int CurrentLevelIndex { get; }

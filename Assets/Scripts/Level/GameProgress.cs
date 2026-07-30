@@ -6,7 +6,8 @@ namespace Game
 {
     public class GameProgress : IGameProgress, IDestroyable
     {
-        public event Action OnLevelComplete;
+        public event Action OnLevelCompleted;
+        public event Action OnLevelFailed;
         public event Action OnItemCollected;
         
         private readonly IDataStorage _dataStorage;
@@ -31,11 +32,22 @@ namespace Game
             _gameProgressData = _dataStorage.Load<GameProgressData>(GameProgressData.DataKey);
 
             _inventory.OnPlaced += OnItemPlaced;
+            _gameTimer.OnTimerFinished += OnTimerFinished;
         }
         
         void IDestroyable.Destroy()
         {
             _inventory.OnPlaced -= OnItemPlaced;
+            _gameTimer.OnTimerFinished -= OnTimerFinished;
+        }
+
+        private void OnTimerFinished()
+        {
+            if(!_isLevelActive) return;
+            
+            _isLevelActive = false;
+            
+            OnLevelFailed?.Invoke();
         }
 
         private void OnItemPlaced(CollectionItemType type, string name, int count)
@@ -61,7 +73,8 @@ namespace Game
             }
 
             _isLevelActive = false;
-            OnLevelComplete?.Invoke();
+            _gameTimer.EndTimer();
+            OnLevelCompleted?.Invoke();
         }
 
         public void SetNextLevel()
@@ -73,6 +86,7 @@ namespace Game
 
         public void SetPausedState(bool paused)
         {
+            _gameTimer.PauseTimer(paused);
             _isLevelActive = !paused;
         }
 

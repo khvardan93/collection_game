@@ -12,8 +12,9 @@ namespace Core.Services
         public event Action<int> OnSecondTick;
 
         private int _lastReportedSecond;
+        private bool _isPaused;
 
-        public void StartTimer(float duration)
+        void IGameTimer.StartTimer(float duration)
         {
             RemainingTime = duration;
             IsRunning = true;
@@ -21,12 +22,20 @@ namespace Core.Services
             OnSecondTick?.Invoke(_lastReportedSecond);
         }
 
-        public void AddTime(float additionalTime)
+        void IGameTimer.EndTimer()
         {
-            if (!IsRunning)
-            {
-                return;
-            }
+            RemainingTime = 0;
+            IsRunning = false;
+        }
+
+        void IGameTimer.PauseTimer(bool pause)
+        {
+            _isPaused = pause;
+        }
+
+        void IGameTimer.AddTime(float additionalTime)
+        {
+            if (!IsRunning) return;
 
             RemainingTime += additionalTime;
 
@@ -38,12 +47,9 @@ namespace Core.Services
             }
         }
 
-        public void Tick(float deltaTime)
+        void IGameTimer.Tick(float deltaTime)
         {
-            if (!IsRunning)
-            {
-                return;
-            }
+            if (!IsRunning || _isPaused) return;
 
             RemainingTime -= deltaTime;
 
