@@ -280,7 +280,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78eaa3388a1e460d931fb2ffb791d9f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Game::GamePlay.CollectableController
-  _config: {fileID: 11400000, guid: 2a5d720b46984d04986263ee9d0a8059, type: 2}
+  _config: {fileID: 11400000, guid: eb00fed2b1af85642b9d61943caedada, type: 2}
   _audioSource: {fileID: 3078595746841175715}
 --- !u!4 &4285472624385984748 stripped
 Transform:

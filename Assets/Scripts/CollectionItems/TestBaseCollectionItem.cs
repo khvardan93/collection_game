@@ -4,7 +4,7 @@ using UnityEngine;
 namespace Game
 {
     [CreateAssetMenu(fileName = "CollectionTestItem", menuName = "Configs/CollectionTestItem")]
-    public class TestCollectionItem : BaseCollectionItem
+    public class GenericCollectionItem : BaseCollectionItem
     {
         
     }

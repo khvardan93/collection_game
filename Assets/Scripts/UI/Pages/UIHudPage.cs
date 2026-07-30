@@ -24,5 +24,11 @@ namespace UI
             _gameProgress?.SetPausedState(true);
             _uiController.ShowPage<UIPausePage>();
         }
+        
+        public void OnAddTime()
+        {
+            _gameProgress?.SetPausedState(true);
+            _uiController.ShowPage<UIAddTimePage>();
+        }
     }
 }
