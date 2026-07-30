@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Collection.TestCollectionItem
   _type: 2
   _name: Star
-  _sprite: {fileID: 0}
+  _sprite: {fileID: 21300000, guid: a3189c24081f38d40b97fbae3ca4d55f, type: 3}
   _prefab: {fileID: 745314303076577220, guid: bc7ce8c3b959efd459b472ee12d9b8e3, type: 3}

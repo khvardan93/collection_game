@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Collection.TestCollectionItem
   _type: 0
   _name: Coin
-  _sprite: {fileID: 0}
+  _sprite: {fileID: 21300000, guid: 3081f539717d7324fb963da9440bce22, type: 3}
   _prefab: {fileID: 1415594824513482501, guid: 6694d2a04e0ad06499798e278e3d070f, type: 3}

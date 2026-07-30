@@ -8,6 +8,6 @@ namespace Core.Services
         CollectionItemType Type { get; }
         string Name { get; }
         Sprite Sprite { get; }
-        CollectableController Prefab { get; }
+        CollectableAnimator Prefab { get; }
     }
 }

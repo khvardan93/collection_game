@@ -8,11 +8,11 @@ namespace Core.Services
         [SerializeField] protected CollectionItemType _type;
         [SerializeField] protected string _name;
         [SerializeField] protected Sprite _sprite;
-        [SerializeField] protected CollectableController _prefab;
+        [SerializeField] protected CollectableAnimator _prefab;
 
         public CollectionItemType Type => _type;
         public string Name => _name;
         Sprite ICollectionItem.Sprite => _sprite;
-        CollectableController ICollectionItem.Prefab => _prefab;
+        CollectableAnimator ICollectionItem.Prefab => _prefab;
     }
 }
