@@ -808,7 +808,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88921dfafe7dfaf4da1465fbce8fba3e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Core.Bootstrap.GameBootstrapper
-  _collection: {fileID: 11400000, guid: 6e286d51c11a04d41b97a99681d7755c, type: 2}
+  collectionStorage: {fileID: 11400000, guid: 6e286d51c11a04d41b97a99681d7755c, type: 2}
   _uiController: {fileID: 1183456319}
   _gameConfigs: {fileID: 11400000, guid: 3ec1182007c2bef4d8f2bade255f86ef, type: 2}
 --- !u!4 &1876248736
@@ -1430,6 +1430,14 @@ PrefabInstance:
     - target: {fileID: 6993456069038344846, guid: 69a16ffd916efd249b39f4751d42ead9, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7075561747609936108, guid: 69a16ffd916efd249b39f4751d42ead9, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -105.1001
+      objectReference: {fileID: 0}
+    - target: {fileID: 7075561747609936108, guid: 69a16ffd916efd249b39f4751d42ead9, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 30.900024
       objectReference: {fileID: 0}
     - target: {fileID: 8620041329523961767, guid: 69a16ffd916efd249b39f4751d42ead9, type: 3}
       propertyPath: m_Name

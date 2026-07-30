@@ -15,7 +15,7 @@ namespace Game
         private readonly IGameTimer _gameTimer;
         
         private GameProgressData _gameProgressData;
-        private LevelProgress _levelProgress;
+        private ILevelProgress _levelProgress;
         
         int IGameProgress.CurrentLevelIndex => _gameProgressData.CurrentLevelIndex;
         ILevelProgress IGameProgress.CurrentLevelProgress => _levelProgress;
@@ -28,17 +28,37 @@ namespace Game
             _gameTimer = ServiceLocator.Container.Resolve<IGameTimer>();
             _gameProgressData = _dataStorage.Load<GameProgressData>(GameProgressData.DataKey);
 
-            _inventory.OnRefresh += OnInventoryChanged;
+            _inventory.OnPlaced += OnItemPlaced;
         }
         
         void IDestroyable.Destroy()
         {
-            _inventory.OnRefresh -= OnInventoryChanged;
+            _inventory.OnPlaced -= OnItemPlaced;
         }
 
-        private void OnInventoryChanged(CollectionItemType type, string name, int count)
+        private void OnItemPlaced(CollectionItemType type, string name, int count)
         {
+            foreach (var item in _levelProgress.CollectionItems)
+            {
+                if (item.Type == type && item.Name == name)
+                {
+                    item.AddProgress(count);
+                    OnItemCollected?.Invoke();
+                    CheckGameProgress();
+                    return;
+                }
+            }
+        }
+
+        private void CheckGameProgress()
+        {
+            foreach (var item in _levelProgress.CollectionItems)
+            {
+                if(item.InProgress)
+                    return;
+            }
             
+            OnLevelComplete?.Invoke();
         }
 
         public void SetNextLevel()

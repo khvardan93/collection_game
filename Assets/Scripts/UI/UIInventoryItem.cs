@@ -11,7 +11,7 @@ namespace UI
         [SerializeField] private Image _image;
         [SerializeField] private TMP_Text _countText;
 
-        private ICollection _collection;
+        private ICollectionStorage _collectionStorage;
 
         public override void Hide()
         {
@@ -22,10 +22,10 @@ namespace UI
         
         public void Setup(IInventoryItem inventoryItem)
         {
-            _collection ??= ServiceLocator.Container.Resolve<ICollection>();
+            _collectionStorage ??= ServiceLocator.Container.Resolve<ICollectionStorage>();
             _countText.text = inventoryItem.Count.ToString();
 
-            if (_collection.TryGet(inventoryItem.Type, inventoryItem.Name, out var collectionItem))
+            if (_collectionStorage.TryGet(inventoryItem.Type, inventoryItem.Name, out var collectionItem))
             {
                 _image.sprite = collectionItem.Sprite;
             }

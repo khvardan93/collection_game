@@ -20,11 +20,11 @@ namespace GamePlay
 
         private readonly RaycastHit[] _raycastHits = new RaycastHit[1];
 
-        private ICollection _collection;
+        private ICollectionStorage _collectionStorage;
 
         private void Awake()
         {
-            _collection = ServiceLocator.Container.Resolve<ICollection>();
+            _collectionStorage = ServiceLocator.Container.Resolve<ICollectionStorage>();
         }
 
         private void Start()
@@ -34,7 +34,7 @@ namespace GamePlay
 
         public void SpawnCollectables()
         {
-            if (_collection is null)
+            if (_collectionStorage is null)
             {
                 Debug.LogWarning("CollectableSpawner: no collectable prefabs assigned.", this);
                 return;
@@ -48,9 +48,9 @@ namespace GamePlay
 
             var bounds = GetSpawnBounds();
 
-            for (int j = 0; j < _collection.Items.Count; j++)
+            for (int j = 0; j < _collectionStorage.Items.Count; j++)
             {
-                var prefab = _collection.Items[j].Prefab;
+                var prefab = _collectionStorage.Items[j].Prefab;
                 
                 for (var i = 0; i < _spawnCount; i++)
                 {

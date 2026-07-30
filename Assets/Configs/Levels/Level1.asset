@@ -15,11 +15,11 @@ MonoBehaviour:
   _duration: 300
   _collectables:
   - _type: 0
-    _name: 
-    _count: 100
+    _name: Coin
+    _count: 10
   - _type: 1
-    _name: 
-    _count: 100
+    _name: Gem
+    _count: 10
   - _type: 2
-    _name: 
-    _count: 100
+    _name: Star
+    _count: 10

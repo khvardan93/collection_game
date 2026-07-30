@@ -2,7 +2,7 @@
 
 namespace Core.Services
 {
-    public interface ICollection
+    public interface ICollectionStorage
     {
         IReadOnlyList<ICollectionItem> Items { get; }
         

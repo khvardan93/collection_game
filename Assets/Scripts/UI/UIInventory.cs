@@ -13,18 +13,13 @@ namespace UI
         private void Start()
         {
             _inventory = ServiceLocator.Container.Resolve<IInventory>();
-            _inventory.OnRefresh += Refresh;
+            _inventory.OnChanged += Refresh;
             Refresh();
         }
 
         private void OnDestroy()
         {
-            _inventory.OnRefresh -= Refresh;
-        }
-
-        private void Refresh(CollectionItemType collectionItemType, string s, int arg3)
-        {
-            Refresh();    
+            _inventory.OnChanged -= Refresh;
         }
         
         private void Refresh()

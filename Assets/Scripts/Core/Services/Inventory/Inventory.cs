@@ -14,7 +14,8 @@ namespace Core.Services
         private readonly IDataStorage _dataStorage;
 
         string IStorable.Key => _key;
-        public event Action<CollectionItemType, string, int> OnRefresh;
+        public event Action<CollectionItemType, string, int> OnPlaced;
+        public event Action OnChanged;
         
         IReadOnlyList<IInventoryItem> IInventory.Items => _items;
 
@@ -42,7 +43,9 @@ namespace Core.Services
                 item.Add(quantity);
             }
 
-            OnRefresh?.Invoke(type, name, quantity);
+            OnPlaced?.Invoke(type, name, quantity);
+            OnChanged?.Invoke();
+            
             _dataStorage.Save(this);
         }
 
@@ -67,7 +70,7 @@ namespace Core.Services
                 _items.Remove(item);
             }
             
-            OnRefresh?.Invoke(type, name, quantity);
+            OnChanged?.Invoke();
             _dataStorage.Save(this);
         }
 
