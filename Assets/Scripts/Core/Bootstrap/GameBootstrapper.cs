@@ -1,4 +1,3 @@
-using System;
 using Core.DI;
 using Core.Services;
 using Game;
@@ -10,7 +9,7 @@ namespace Core.Bootstrap
     [DefaultExecutionOrder(-1000)]
     public sealed class GameBootstrapper : MonoBehaviour
     {
-        [SerializeField] private CollectionStorage collectionStorage;
+        [SerializeField] private CollectionStorage _collectionStorage;
         [SerializeField] private UIController _uiController;
         [SerializeField] private GameConfigs _gameConfigs;
         
@@ -22,7 +21,7 @@ namespace Core.Bootstrap
 
             container.Register<IGameTimer, GameTimer>();
             container.Register<IDataStorage, DataStorage>();
-            container.Register<ICollectionStorage>(collectionStorage);
+            container.Register<ICollectionStorage>(_collectionStorage);
             container.Register<IGameConfigs>(_gameConfigs);
             container.Register<IInventory, Inventory>();
             container.Register<IGameProgress, GameProgress>();
