@@ -5,5 +5,6 @@ namespace Game
     public interface ILevelProgress
     {
         IReadOnlyList<ICollectionProgress>  CollectionItems { get; }
+        int Duration { get; }
     }
 }

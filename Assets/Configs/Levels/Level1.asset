@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b650566a3d9147d0b95a66001ae9f0bf, type: 3}
   m_Name: Level1
   m_EditorClassIdentifier: Game::Core.Services.LevelConfig
-  _duration: 0
+  _duration: 300
   _collectables:
   - _type: 0
     _name: 

@@ -12,6 +12,7 @@ namespace Game
         private readonly IDataStorage _dataStorage;
         private readonly IGameConfigs _gameConfigs;
         private readonly IInventory _inventory;
+        private readonly IGameTimer _gameTimer;
         
         private GameProgressData _gameProgressData;
         private LevelProgress _levelProgress;
@@ -24,6 +25,7 @@ namespace Game
             _dataStorage = ServiceLocator.Container.Resolve<IDataStorage>();
             _gameConfigs = ServiceLocator.Container.Resolve<IGameConfigs>();
             _inventory = ServiceLocator.Container.Resolve<IInventory>();
+            _gameTimer = ServiceLocator.Container.Resolve<IGameTimer>();
             _gameProgressData = _dataStorage.Load<GameProgressData>(GameProgressData.DataKey);
 
             _inventory.OnRefresh += OnInventoryChanged;
@@ -43,16 +45,20 @@ namespace Game
         {
             _gameProgressData.CurrentLevelIndex++;
             _dataStorage.Save(_gameProgressData);
-            SetLevel();
+            TrySetLevel();
         }
 
-        public void SetLevel()
+        public bool TrySetLevel()
         {
             if(_gameProgressData.CurrentLevelIndex <_gameConfigs.Levels.Count)
             {
                 var currentLevel = _gameConfigs.Levels[_gameProgressData.CurrentLevelIndex];
                 _levelProgress = new LevelProgress(currentLevel);
+                _gameTimer.StartTimer(currentLevel.Duration);
+                return true;
             }
+            
+            return false;
         }
         
         [Serializable]

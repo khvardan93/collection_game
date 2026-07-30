@@ -5,5 +5,6 @@ namespace Core.DI
         void Register<TAbstraction, TImplementation>() where TImplementation : TAbstraction, new();
         void Register<TAbstraction>(TAbstraction instance);
         T Resolve<T>();
+        void Destroy();
     }
 }

@@ -1,3 +1,4 @@
+using System;
 using Core.DI;
 using Core.Services;
 using Game;
@@ -13,11 +14,13 @@ namespace Core.Bootstrap
         [SerializeField] private UIController _uiController;
         [SerializeField] private GameConfigs _gameConfigs;
         
+        private IGameTimer _gameTimer;
+        
         private void Awake()
         {
             var container = new ServiceContainer();
 
-            container.Register<IGameClock, GameClock>();
+            container.Register<IGameTimer, GameTimer>();
             container.Register<IDataStorage, DataStorage>();
             container.Register<ICollection>(_collection);
             container.Register<IGameConfigs>(_gameConfigs);
@@ -26,11 +29,18 @@ namespace Core.Bootstrap
             container.Register<IUIController>(_uiController);
 
             ServiceLocator.Container = container;
+            
+            _gameTimer = ServiceLocator.Container.Resolve<IGameTimer>();
+        }
+
+        private void Update()
+        {
+            _gameTimer.Tick(Time.deltaTime);
         }
 
         private void OnDestroy()
         {
-            ServiceLocator.Reset();
+            ServiceLocator.Destroy();
         }
     }
 }

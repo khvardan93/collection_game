@@ -1,12 +1,13 @@
 using System;
 using System.Collections.Generic;
+using Core.Services;
 
 namespace Core.DI
 {
     public sealed class ServiceContainer : IContainer
     {
-        private readonly Dictionary<Type, object> _instances = new Dictionary<Type, object>();
-        private readonly Dictionary<Type, Type> _registrations = new Dictionary<Type, Type>();
+        private readonly Dictionary<Type, object> _instances = new();
+        private readonly Dictionary<Type, Type> _registrations = new();
 
         public void Register<TAbstraction, TImplementation>() where TImplementation : TAbstraction, new()
         {
@@ -35,6 +36,17 @@ namespace Core.DI
             }
 
             throw new InvalidOperationException($"No registration found for type '{abstractionType.FullName}'.");
+        }
+
+        public void Destroy()
+        {
+            foreach (var instance in _instances)
+            {
+                if (instance.Value is IDestroyable destroyable)
+                {
+                    destroyable.Destroy();
+                }
+            }
         }
     }
 }

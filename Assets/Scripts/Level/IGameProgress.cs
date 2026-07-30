@@ -9,5 +9,8 @@ namespace Game
         
         int CurrentLevelIndex { get; }
         ILevelProgress CurrentLevelProgress { get; }
+
+        bool TrySetLevel();
+        void SetNextLevel();
     }
 }

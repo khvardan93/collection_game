@@ -4,8 +4,9 @@ namespace Core.DI
     {
         public static IContainer Container { get; set; }
 
-        public static void Reset()
+        public static void Destroy()
         {
+            Container.Destroy();
             Container = null;
         }
     }
