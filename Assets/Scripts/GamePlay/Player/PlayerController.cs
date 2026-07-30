@@ -21,13 +21,6 @@ namespace GamePlay
         [Tooltip("Acceleration and deceleration")]
         [SerializeField] private float _speedChangeRate = 10.0f;
 
-        [SerializeField] private AudioSource _audioFootsteps;
-        [SerializeField] private AudioSource _landingAudio;
-        [SerializeField] private AudioSource _audioFoley;
-        [SerializeField] private AudioClip _landingAudioClip;
-        [SerializeField] private AudioClip[] _footstepAudioClips;
-        [Range(0, 1)] [SerializeField] private float _footstepAudioVolume = 0.5f;
-
         [Space(10)]
         [Tooltip("The height the player can jump")]
         [SerializeField] private float _jumpHeight = 1.2f;
@@ -54,26 +47,6 @@ namespace GamePlay
 
         [Tooltip("What layers the character uses as ground")]
         [SerializeField] private LayerMask _groundLayers;
-
-        [Header("Cinemachine")]
-        [Tooltip("The follow target set in the Cinemachine Virtual Camera that the camera will follow")]
-        [SerializeField] private GameObject _cinemachineCameraTarget;
-
-        [Tooltip("How far in degrees can you move the camera up")]
-        [SerializeField] private float _topClamp = 70.0f;
-
-        [Tooltip("How far in degrees can you move the camera down")]
-        [SerializeField] private float _bottomClamp = -30.0f;
-
-        [Tooltip("Additional degress to override the camera. Useful for fine tuning camera position when locked")]
-        [SerializeField] private float _cameraAngleOverride = 0.0f;
-
-        [Tooltip("For locking the camera position on all axis")]
-        [SerializeField] private bool _lockCameraPosition = false;
-
-        // cinemachine
-        private float _cinemachineTargetYaw;
-        private float _cinemachineTargetPitch;
 
         // player
         private float _speed;
@@ -117,9 +90,6 @@ namespace GamePlay
 
         private void Start()
         {
-            if(_cinemachineCameraTarget)
-                _cinemachineTargetYaw = _cinemachineCameraTarget.transform.rotation.eulerAngles.y;
-
             _hasAnimator = TryGetComponent(out _animator);
             _controller = GetComponent<CharacterController>();
             _input = GetComponent<GameInputs>();
@@ -139,11 +109,6 @@ namespace GamePlay
             JumpAndGravity();
             GroundedCheck();
             Move();
-        }
-
-        private void LateUpdate()
-        {
-            CameraRotation();
         }
 
         private void AssignAnimationIDs()
@@ -170,44 +135,22 @@ namespace GamePlay
             }
         }
 
-        private void CameraRotation()
-        {
-            // if there is an input and camera position is not fixed
-            if (_input.look.sqrMagnitude >= _threshold && !_lockCameraPosition)
-            {
-                //Don't multiply mouse input by Time.deltaTime;
-                float deltaTimeMultiplier = IsCurrentDeviceMouse ? 1.0f : Time.deltaTime;
-
-                _cinemachineTargetYaw += _input.look.x * deltaTimeMultiplier;
-                _cinemachineTargetPitch += _input.look.y * deltaTimeMultiplier;
-            }
-
-            // clamp our rotations so our values are limited 360 degrees
-            _cinemachineTargetYaw = ClampAngle(_cinemachineTargetYaw, float.MinValue, float.MaxValue);
-            _cinemachineTargetPitch = ClampAngle(_cinemachineTargetPitch, _bottomClamp, _topClamp);
-
-            // Cinemachine will follow this target
-            if (_cinemachineCameraTarget)
-                _cinemachineCameraTarget.transform.rotation =
-                    Quaternion.Euler(_cinemachineTargetPitch + _cameraAngleOverride, _cinemachineTargetYaw, 0.0f);
-        }
-
         private void Move()
         {
             // set target speed based on move speed, sprint speed and if sprint is pressed
-            float targetSpeed = _input.sprint ? _sprintSpeed : _moveSpeed;
+            float targetSpeed = _input.Sprint ? _sprintSpeed : _moveSpeed;
 
             // a simplistic acceleration and deceleration designed to be easy to remove, replace, or iterate upon
 
             // note: Vector2's == operator uses approximation so is not floating point error prone, and is cheaper than magnitude
             // if there is no input, set the target speed to 0
-            if (_input.move == Vector2.zero) targetSpeed = 0.0f;
+            if (_input.Move == Vector2.zero) targetSpeed = 0.0f;
 
             // a reference to the players current horizontal velocity
             float currentHorizontalSpeed = new Vector3(_controller.velocity.x, 0.0f, _controller.velocity.z).magnitude;
 
             float speedOffset = 0.1f;
-            float inputMagnitude = _input.analogMovement ? _input.move.magnitude : 1f;
+            float inputMagnitude = _input.AnalogMovement ? _input.Move.magnitude : 1f;
 
             // accelerate or decelerate to target speed
             if (currentHorizontalSpeed < targetSpeed - speedOffset ||
@@ -230,11 +173,11 @@ namespace GamePlay
             if (_animationBlend < 0.01f) _animationBlend = 0f;
 
             // normalise input direction
-            Vector3 inputDirection = new Vector3(_input.move.x, 0.0f, _input.move.y).normalized;
+            Vector3 inputDirection = new Vector3(_input.Move.x, 0.0f, _input.Move.y).normalized;
 
             // note: Vector2's != operator uses approximation so is not floating point error prone, and is cheaper than magnitude
             // if there is a move input rotate player when the player is moving
-            if (_input.move != Vector2.zero)
+            if (_input.Move != Vector2.zero)
             {
                 _targetRotation = Mathf.Atan2(inputDirection.x, inputDirection.z) * Mathf.Rad2Deg +
                                   _mainCamera.transform.eulerAngles.y;
@@ -281,7 +224,7 @@ namespace GamePlay
                 }
 
                 // Jump
-                if (_input.jump && _jumpTimeoutDelta <= 0.0f)
+                if (_input.Jump && _jumpTimeoutDelta <= 0.0f)
                 {
                     // the square root of H * -2 * G = how much velocity needed to reach desired height
                     _verticalVelocity = Mathf.Sqrt(_jumpHeight * -2f * _gravity);
@@ -319,7 +262,7 @@ namespace GamePlay
                 }
 
                 // if we are not grounded, do not jump
-                _input.jump = false;
+                _input.Jump = false;
             }
 
             // apply gravity over time if under terminal (multiply by delta time twice to linearly speed up over time)
@@ -329,6 +272,7 @@ namespace GamePlay
             }
         }
 
+        /*
         private static float ClampAngle(float lfAngle, float lfMin, float lfMax)
         {
             if (lfAngle < -360f) lfAngle += 360f;
@@ -348,28 +292,6 @@ namespace GamePlay
             Gizmos.DrawSphere(
                 new Vector3(transform.position.x, transform.position.y - _groundedOffset, transform.position.z),
                 _groundedRadius);
-        }
-
-        private void OnFootstep(AnimationEvent animationEvent)
-        {
-            if (animationEvent.animatorClipInfo.weight > 0.5f)
-            {
-
-                if (_audioFootsteps != null)
-                    _audioFootsteps.Play();
-                if (_audioFoley != null)
-                    _audioFoley.Play();
-            }
-        }
-
-        private void OnLand(AnimationEvent animationEvent)
-        {
-            if (animationEvent.animatorClipInfo.weight > 0.5f)
-            {
-                if (_landingAudio != null)
-                    _landingAudio.Play();
-
-            }
-        }
+        }*/
     }
 }

@@ -1,26 +1,36 @@
+using System;
+using Core.DI;
+using Game;
 using UnityEngine;
-#if ENABLE_INPUT_SYSTEM
 using UnityEngine.InputSystem;
-#endif
 
 namespace GamePlay
 {
 	public class GameInputs : MonoBehaviour
 	{
-		[Header("Character Input Values")]
-		public Vector2 move;
-		public Vector2 look;
-		public bool jump;
-		public bool sprint;
+		public Vector2 Move { private set; get; }
+		public Vector2 Look { private set; get; }
+		public bool Jump { set; get; }
+		public bool Sprint { private set; get; }
 
-		[Header("Movement Settings")]
-		public bool analogMovement;
+		public bool AnalogMovement { private set; get; }
 
 		[Header("Mouse Cursor Settings")]
-		public bool cursorLocked = true;
-		public bool cursorInputForLook = true;
+		[SerializeField] private bool _cursorLocked = true;
+		[SerializeField] private bool _cursorInputForLook = true;
 
-#if ENABLE_INPUT_SYSTEM
+		private IGameProgress _gameProgress;
+		
+		private void Awake()
+		{
+			_gameProgress = ServiceLocator.Container.Resolve<IGameProgress>();
+		}
+
+		private bool AreInputsLocked()
+		{
+			return !_gameProgress.IsLevelActive;
+		}
+		
 		public void OnMove(InputValue value)
 		{
 			MoveInput(value.Get<Vector2>());
@@ -28,7 +38,7 @@ namespace GamePlay
 
 		public void OnLook(InputValue value)
 		{
-			if(cursorInputForLook)
+			if (_cursorInputForLook)
 			{
 				LookInput(value.Get<Vector2>());
 			}
@@ -43,32 +53,34 @@ namespace GamePlay
 		{
 			SprintInput(value.isPressed);
 		}
-#endif
-
 
 		public void MoveInput(Vector2 newMoveDirection)
 		{
-			move = newMoveDirection;
-		} 
+			if(AreInputsLocked()) return;
+			Move = newMoveDirection;
+		}
 
 		public void LookInput(Vector2 newLookDirection)
 		{
-			look = newLookDirection;
+			if(AreInputsLocked()) return;
+			Look = newLookDirection;
 		}
 
 		public void JumpInput(bool newJumpState)
 		{
-			jump = newJumpState;
+			if(AreInputsLocked()) return;
+			Jump = newJumpState;
 		}
 
 		public void SprintInput(bool newSprintState)
 		{
-			sprint = newSprintState;
+			if(AreInputsLocked()) return;
+			Sprint = newSprintState;
 		}
 
 		private void OnApplicationFocus(bool hasFocus)
 		{
-			SetCursorState(cursorLocked);
+			SetCursorState(_cursorLocked);
 		}
 
 		private void SetCursorState(bool newState)
@@ -76,5 +88,4 @@ namespace GamePlay
 			Cursor.lockState = newState ? CursorLockMode.Locked : CursorLockMode.None;
 		}
 	}
-	
 }

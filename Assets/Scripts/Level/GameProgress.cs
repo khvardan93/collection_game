@@ -16,9 +16,11 @@ namespace Game
         
         private GameProgressData _gameProgressData;
         private ILevelProgress _levelProgress;
+        private bool _isLevelActive;
         
         int IGameProgress.CurrentLevelIndex => _gameProgressData.CurrentLevelIndex;
         ILevelProgress IGameProgress.CurrentLevelProgress => _levelProgress;
+        bool IGameProgress.IsLevelActive => _isLevelActive;
 
         public GameProgress()
         {
@@ -57,7 +59,8 @@ namespace Game
                 if(item.InProgress)
                     return;
             }
-            
+
+            _isLevelActive = false;
             OnLevelComplete?.Invoke();
         }
 
@@ -68,6 +71,11 @@ namespace Game
             TrySetLevel();
         }
 
+        public void SetPausedState(bool paused)
+        {
+            _isLevelActive = !paused;
+        }
+
         public bool TrySetLevel()
         {
             if(_gameProgressData.CurrentLevelIndex <_gameConfigs.Levels.Count)
@@ -75,6 +83,7 @@ namespace Game
                 var currentLevel = _gameConfigs.Levels[_gameProgressData.CurrentLevelIndex];
                 _levelProgress = new LevelProgress(currentLevel);
                 _gameTimer.StartTimer(currentLevel.Duration);
+                _isLevelActive = true;
                 return true;
             }
             

@@ -922,7 +922,7 @@ GameObject:
   - component: {fileID: 2747070387736619215}
   - component: {fileID: 8949791979902340218}
   - component: {fileID: 378117997864087697}
-  - component: {fileID: 5465700539482021363}
+  - component: {fileID: 1511642599370491495}
   m_Layer: 7
   m_Name: Player
   m_TagString: Player
@@ -1008,16 +1008,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26e54e5a728a9234ab24fcf1460ed8a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _moveSpeed: 2
+  _moveSpeed: 4
   _sprintSpeed: 5.335
-  _rotationSmoothTime: 0.12
+  _rotationSmoothTime: 0.3
   _speedChangeRate: 10
-  _audioFootsteps: {fileID: 6989412868672926176}
-  _landingAudio: {fileID: 6009309750340938360}
-  _audioFoley: {fileID: 6834240183292816253}
-  _landingAudioClip: {fileID: 0}
-  _footstepAudioClips: []
-  _footstepAudioVolume: 0.5
   _jumpHeight: 1.2
   _gravity: -15
   _jumpTimeout: 0.3
@@ -1028,11 +1022,6 @@ MonoBehaviour:
   _groundLayers:
     serializedVersion: 2
     m_Bits: 8
-  _cinemachineCameraTarget: {fileID: 0}
-  _topClamp: 70
-  _bottomClamp: -30
-  _cameraAngleOverride: 0
-  _lockCameraPosition: 0
 --- !u!114 &8949791979902340218
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1045,13 +1034,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e087ecce43ebbff45a1b360637807d93, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  move: {x: 0, y: 0}
-  look: {x: 0, y: 0}
-  jump: 0
-  sprint: 0
-  analogMovement: 0
-  cursorLocked: 0
-  cursorInputForLook: 0
+  _cursorLocked: 0
+  _cursorInputForLook: 0
 --- !u!114 &378117997864087697
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1150,7 +1134,7 @@ MonoBehaviour:
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
---- !u!114 &5465700539482021363
+--- !u!114 &1511642599370491495
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1159,14 +1143,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 2536197354308843136}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 848a88fb132a53b4baf17a344310c16f, type: 3}
+  m_Script: {fileID: 11500000, guid: dd20f643659b1c94ab84c47c3b90f11f, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::BasicRigidBodyPush
-  pushLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  canPush: 0
-  strength: 1.1
+  m_EditorClassIdentifier: Game::GamePlay.PlayerAudio
+  _audioFootsteps: {fileID: 6989412868672926176}
+  _landingAudio: {fileID: 6009309750340938360}
+  _audioFoley: {fileID: 6834240183292816253}
+  _footstepAudioVolume: 0.2
 --- !u!1 &2605487437688477828
 GameObject:
   m_ObjectHideFlags: 0

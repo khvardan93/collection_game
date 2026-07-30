@@ -9,8 +9,10 @@ namespace Game
         
         int CurrentLevelIndex { get; }
         ILevelProgress CurrentLevelProgress { get; }
+        bool IsLevelActive { get; }
 
         bool TrySetLevel();
         void SetNextLevel();
+        void SetPausedState(bool paused);
     }
 }
